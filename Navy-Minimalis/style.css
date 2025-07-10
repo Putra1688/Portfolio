@@ -3,7 +3,7 @@
 *{
     padding: 0;
     margin: 0;
-    font-family: 'Monsterat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
 }
 
@@ -13,6 +13,16 @@ body{
     overflow-x: hidden;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
+#menu-btn{
+    color: white
+    font-size: 2rem;
+    display: none;
+  }
+
 header{
     z-index: 889;
     position: fixed;
@@ -20,7 +30,7 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-    padding: 15px 200px;
+    padding: 30px 200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,35 +39,66 @@ header{
 
 header.sticky{
     background-color: #3a6cf4;
-    padding: 10px 200px;
+    padding: 20px 200px;
 }
 
 header .brand{
     color: white;
     font-size: 1em;
-    font-weight: 500;
+    font-weight: 650;
     text-decoration: none;
+    transition: 0.3s ease;
 }
 
 header .navigation{
     position: relative;
+    display: flex;
+    gap: 20px;
 }
 
-header .navigation a{
+header .navigation a {
+    position: relative;
     color: white;
-    font-size: 1em;
+    font-weight: 300;
     text-decoration: none;
-    font-weight: 500;
-    margin-left: 30px;
+    transition: font-weight 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-header .navigation a:hover{
+header .navigation a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px; /* Jarak garis dari teks */
+    width: 0;
+    height: 3px; /* Ketebalan garis */
+    background: #3a6cf4; /* Warna garis */
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+header .navigation a:hover {
     color: #3a6cf4;
+    font-weight: 600;
 }
 
-header .sticky .navigation a:hover{
-    color: black;
+header .navigation a:hover::after {
+    width: 100%;
+    left: 0;
 }
+
+/* Untuk navbar sticky */
+header.sticky .navigation a {
+    color: black;
+    transition: color 0.3s ease-in-out;
+}
+
+header.sticky .navigation a:hover {
+    color: white;
+}
+
+header.sticky .navigation a::after {
+    background: white; /* Ubah warna garis di sticky */
+}
+
 
 section{
     padding: 100px 200px;
@@ -70,7 +111,7 @@ section{
     display: flex;
     align-items: center;
     background-color: #01011A ;
-    /* background-image: url(Image/bg.jpg); */
+    background-image: url(images/sea.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -78,13 +119,15 @@ section{
 }
 
 .main .content{
-    max-width: 7000px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .main .content h2{
     color: white;
-    font-size: 2em;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 800;
 }
 
 .main .content h2 span{
@@ -99,7 +142,7 @@ section{
 }
 
 .animated-text h3{
-    color: #4e9eff;
+    color: #01011A;
     font-size: 3em;
     font-weight: 700;
     line-height: 70px;
@@ -625,7 +668,7 @@ section{
         transition: 0.3s ease;
     }
 
-    .menu-btn{
+    /* .menu-btn{
         position: absolute;
         background-image: url(Image/menu.png);
         background-position: center;
@@ -647,7 +690,7 @@ section{
         background-size: 25px;
         transition: 0.3s ease;
         filter: invert(1);
-    }
+    } */
 
     section{
         padding: 80px 20px;
@@ -718,6 +761,41 @@ section{
     transition: all 0.3s ease;
   }
 
+
+  @media (max-width: 768px) {
+    header .navigation {
+      position: fixed;
+      top: 60px; /* Atur sesuai tinggi header */
+      right: -100%;
+      flex-direction: column;
+      background-color: #3a6cf4;
+      width: 200px;
+      padding: 20px;
+      transition: right 0.3s ease-in-out;
+      z-index: 888;
+    }
+  
+    header .navigation.active {
+      right: 0;
+    }
+  
+    #menu-btn {
+      display: block;
+      cursor: pointer;
+      color: white;
+      font-size: 1.5rem;
+      z-index: 889;
+    }
+  }
+
+  #menu-btn.active {
+    color: #3a6cf4;
+    transform: rotate(90deg);
+    transition: 0.3s ease;
+}
+
+
+  
 
 
 
